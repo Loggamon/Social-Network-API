@@ -14,12 +14,10 @@ const reactionSchema = new Schema(
       type: String,
       required: true,
     },
-    friends: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "user",
-      },
-    ],
+    createdAt: {
+        type: Date,
+        default: Date.now,
+    },
   },
   {
     toJSON: {
