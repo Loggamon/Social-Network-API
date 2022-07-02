@@ -1,4 +1,5 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model, default: mongoose } = require("mongoose");
+require("mongoose-type-email");
 
 const userSchema = new Schema(
   {
@@ -9,23 +10,19 @@ const userSchema = new Schema(
       trim: true,
     },
     email: {
-      type: String,
+      type: mongoose.SchemaTypes.Email,
       required: [true, "Email is required!"],
       unique: true,
-      match: [
-        /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w+{2,3})+$/,
-        "Please enter a valid email!",
-      ],
     },
     thoughts: [
       {
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: "thought",
       },
     ],
     friends: [
       {
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: "user",
       },
     ],
