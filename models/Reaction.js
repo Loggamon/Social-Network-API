@@ -17,11 +17,16 @@ const reactionSchema = new Scheme(
     },
     createdAt: {
       type: Date,
+      get: (date) => {
+        if (date) return date.toLocaleString().split("T")[0];
+      },
       default: Date.now,
     },
   },
   {
+    timestamps: true,
     toJSON: {
+      getters: true,
       virtuals: true,
     },
     id: false,
